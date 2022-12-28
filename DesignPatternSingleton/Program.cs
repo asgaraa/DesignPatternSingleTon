@@ -12,22 +12,32 @@ Parallel.ForEach(numbers, i =>
 
 //multithreading
 
-Parallel.Invoke(
-               () => PrintTeacherDetails(),
-               () => PrintStudentdetails()
-               );
-Console.ReadLine();
+
+
+
+
+MultiTheread fromTeachaer = MultiTheread.Instance;
+fromTeachaer.PrintDetails("From Teacher");
+MultiTheread fromStudent = MultiTheread.Instance;
+fromStudent.PrintDetails("From Student");
+
+
+//Parallel.Invoke(
+//               () => PrintTeacherDetails(),
+//               () => PrintStudentdetails()
+//               );
+//Console.ReadLine();
         
- static void PrintTeacherDetails()
-{
-    MultiTheread fromTeacher = MultiTheread.GetInstance;
-    fromTeacher.PrintDetails("From Teacher");
-}
- static void PrintStudentdetails()
-{
-    MultiTheread fromStudent = MultiTheread.GetInstance;
-    fromStudent.PrintDetails("From Student");
-}
+// static void PrintTeacherDetails()
+//{
+//    MultiTheread fromTeacher = MultiTheread.GetInstance;
+//    fromTeacher.PrintDetails("From Teacher");
+//}
+// static void PrintStudentdetails()
+//{
+//    MultiTheread fromStudent = MultiTheread.GetInstance;
+//    fromStudent.PrintDetails("From Student");
+
 
 
 

@@ -8,22 +8,30 @@ namespace DesignPatternSingleton
 {
     public sealed class MultiTheread
     {
-
         private static int counter = 0;
-        private static MultiTheread instance = null;
-        public static MultiTheread GetInstance
+        private static volatile MultiTheread _instance = null;
+        private static object _syncRoot = new Object();
+
+      
+        private MultiTheread() {
+            counter += 1;
+            Console.WriteLine("Counter Value " + counter.ToString());
+        }
+
+        public static MultiTheread Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new MultiTheread();
-                return instance;
+                if (_instance == null)
+                {
+                    lock (_syncRoot)
+                    {
+                        if (_instance == null)
+                            _instance = new MultiTheread();
+                    }
+                }
+                return _instance;
             }
-        }
-        private MultiTheread()
-        {
-            counter++;
-            Console.WriteLine("Counter Value " + counter.ToString());
         }
         public void PrintDetails(string message)
         {
